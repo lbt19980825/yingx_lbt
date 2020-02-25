@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lbt.yingx_lbt.dao.VideoMapper">
+    <select id="queryByReleaseTime" resultType="com.lbt.yingx_lbt.po.VideoLikePo">
+         select
+          c.name cateName,
+          v.id id,v.title videoTitle,v.cover cover,v.path path,v.upload_time uploadTime,v.brief description,
+          u.pic_img userPhoto
+         from yx_category c
+         right join yx_video v on c.id=v.category_id
+         left join yx_user u on v.user_id=u.id
+         order by v.upload_time desc
+    </select>
+</mapper>

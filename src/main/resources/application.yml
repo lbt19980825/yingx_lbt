@@ -1,0 +1,26 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /yingx
+    jsp:
+      init-parameters:
+        development: true
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yingx?characterEncoding=UTF-8
+    username: root
+    password: lbt
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+    date-format: yyyy-MM-dd
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+mybatis:
+  type-aliases-package: com.lbt.yingx_lbt.entity
+  mapper-locations: classpath:com/lbt/mapper/*Mapper.xml
+
