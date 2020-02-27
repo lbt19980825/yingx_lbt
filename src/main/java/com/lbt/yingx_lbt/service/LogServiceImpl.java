@@ -1,5 +1,6 @@
 package com.lbt.yingx_lbt.service;
 
+import com.lbt.yingx_lbt.annotation.AddCache;
 import com.lbt.yingx_lbt.dao.LogMapper;
 import com.lbt.yingx_lbt.entity.Log;
 import com.lbt.yingx_lbt.entity.LogExample;
@@ -18,6 +19,7 @@ public class LogServiceImpl implements LogService {
     @Resource
     private LogMapper logMapper;
     @Override
+    @AddCache
     public List<Log> showAllLog(PageBean pageBean) {
         //查询共有多少行日志
         int i = logMapper.selectCount(new Log());

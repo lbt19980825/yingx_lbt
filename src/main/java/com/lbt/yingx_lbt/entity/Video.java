@@ -8,13 +8,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(name="yx_video")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Video {
+public class Video implements Serializable {
     @Id
     private String id;
 

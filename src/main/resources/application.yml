@@ -20,6 +20,9 @@ spring:
     multipart:
       max-file-size: 50MB
       max-request-size: 100MB
+  redis:
+    host: 118.31.77.247
+    port: 7000
 mybatis:
   type-aliases-package: com.lbt.yingx_lbt.entity
   mapper-locations: classpath:com/lbt/mapper/*Mapper.xml

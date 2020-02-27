@@ -1,6 +1,8 @@
 package com.lbt.yingx_lbt.entity;
 
-public class PageBean {
+import java.io.Serializable;
+
+public class PageBean implements Serializable {
 	private int pageNo;//页面
 	private int pageRow;//每页的行数
 	private int totalRow;//需要显示的总行数

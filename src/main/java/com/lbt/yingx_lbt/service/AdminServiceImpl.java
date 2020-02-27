@@ -1,5 +1,6 @@
 package com.lbt.yingx_lbt.service;
 
+import com.lbt.yingx_lbt.annotation.AddCache;
 import com.lbt.yingx_lbt.dao.AdminMapper;
 import com.lbt.yingx_lbt.entity.Admin;
 import com.lbt.yingx_lbt.entity.AdminExample;
@@ -18,6 +19,8 @@ public class AdminServiceImpl implements AdminService {
     private AdminMapper adminMapper;
     @Resource
     private HttpSession session;
+
+
     @Override
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public HashMap<String,String> findAdminByUsername(Admin admin,String code) {

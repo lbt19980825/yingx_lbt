@@ -1,5 +1,7 @@
 package com.lbt.yingx_lbt.service;
 
+import com.lbt.yingx_lbt.annotation.AddCache;
+import com.lbt.yingx_lbt.annotation.DelCache;
 import com.lbt.yingx_lbt.dao.LikeMapper;
 import com.lbt.yingx_lbt.dao.LogMapper;
 import com.lbt.yingx_lbt.dao.VideoMapper;
@@ -36,6 +38,7 @@ public class VideoServiceImpl implements VideoService {
     HttpSession session;
 
     //查所有视频
+    @AddCache
     @Override
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<Video> showAllVideo(PageBean pageBean) {
@@ -51,6 +54,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     //添加视频
+    @DelCache
     @Override
     public String insertVideo(Video video) {
         //补全字段
@@ -63,6 +67,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     //根据id修改封面和路径
+    @DelCache
     @Override
     public void updateCoverAndPathById(String id,String name,String realCoverName) {
         //修改视频中封面和路径字段
@@ -74,6 +79,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     //根据id删除视频和封面（删除前要先查询到该视频的路径）,
+    @DelCache
     @Override
     public Video deleteVideoById(String id) {
         VideoExample videoExample = new VideoExample();
@@ -91,6 +97,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     //接口调用，供首页显示
+    @AddCache
     @Override
     public List<VideoLikePo> queryByReleaseTime() {
         List<VideoLikePo> videoLikePos = videoMapper.queryByReleaseTime();
@@ -106,6 +113,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     //上传视频并将其截取第一帧作为封面
+    @DelCache
     @Override
     public HashMap<String, String> uploadVideo(MultipartFile cover, String id) {
         HashMap<String, String> map = new HashMap<>();
@@ -142,6 +150,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     //app接口调用,根据类别查询该类别下所有视频
+    @AddCache
     @Override
     public List<Video> CateVideoList(String cateId) {
         VideoExample videoExample = new VideoExample();

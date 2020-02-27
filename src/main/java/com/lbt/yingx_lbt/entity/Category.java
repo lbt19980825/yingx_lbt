@@ -8,12 +8,13 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.io.Serializable;
 
 @Table(name="yx_category")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category {
+public class Category implements Serializable {
     @Id
     private String id;
 

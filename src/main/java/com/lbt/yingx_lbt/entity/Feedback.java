@@ -9,13 +9,14 @@ import org.springframework.stereotype.Controller;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="yx_feedback")
-public class Feedback {
+public class Feedback implements Serializable {
     @Id
     private String id;
 

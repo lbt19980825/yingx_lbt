@@ -5,6 +5,8 @@ import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import com.alibaba.fastjson.JSON;
+import com.lbt.yingx_lbt.annotation.AddCache;
+import com.lbt.yingx_lbt.annotation.DelCache;
 import com.lbt.yingx_lbt.dao.UserMapper;
 import com.lbt.yingx_lbt.entity.PageBean;
 import com.lbt.yingx_lbt.entity.User;
@@ -35,6 +37,7 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserService userService;
     //展示所有用户
+    @AddCache
     @Override
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<User> queryAllUser(PageBean pageBean) {
@@ -48,6 +51,7 @@ public class UserServiceImpl implements UserService {
 
     //添加用户
     @Override
+    @DelCache
     public String insertUser(User user) {
         String s = UUID.randomUUID().toString();//生成UUID
         user.setId(s);//设置id
@@ -71,12 +75,14 @@ public class UserServiceImpl implements UserService {
     }
 
     //根据id修改用户图片名
+    @DelCache
     @Override
     public void updatePicImgById(User user) {
         userMapper.updateByPrimaryKeySelective(user);//根据主键修改
     }
 
     //根据id修改用户状态
+    @DelCache
     @Override
     public void updateStatusById(User user) {
         if("激活".equals(user.getStatus())){
@@ -102,6 +108,7 @@ public class UserServiceImpl implements UserService {
     }
 
     //进行各种条件的模糊查询   eq:等于   cn：包含
+    @AddCache
     @Override
     public List<User> queryUserByTerm(String searchString, String searchField, String searchOper) {
         List<User> users = null;
@@ -197,6 +204,7 @@ public class UserServiceImpl implements UserService {
     }
 
     //查询各个月份男性和女性的注册人数
+    @AddCache
     @Override
     public HashMap<String,List<String>> selectManOrWomanCount() {
         HashMap<String, List<String>> map = new HashMap<>();
@@ -219,6 +227,7 @@ public class UserServiceImpl implements UserService {
     }
 
     //查询每个城市男性和女性的注册人数
+    @AddCache
     @Override
     public ArrayList<Models> selectManOrWomanByCity() {
         //查男性

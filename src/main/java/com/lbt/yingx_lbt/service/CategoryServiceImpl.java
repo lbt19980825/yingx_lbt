@@ -1,5 +1,7 @@
 package com.lbt.yingx_lbt.service;
 
+import com.lbt.yingx_lbt.annotation.AddCache;
+import com.lbt.yingx_lbt.annotation.DelCache;
 import com.lbt.yingx_lbt.dao.CategoryMapper;
 import com.lbt.yingx_lbt.dao.VideoMapper;
 import com.lbt.yingx_lbt.entity.Category;
@@ -29,6 +31,7 @@ public class CategoryServiceImpl implements CategoryService {
     private VideoMapper videoMapper;
 
     //展示所有一级类别
+    @AddCache
     @Override
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<Category> showAllFirstCategory(PageBean pageBean) {
@@ -46,6 +49,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     //根据一级类别id获取该一级类别下的所有二级类别
+    @AddCache
     @Override
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<Category> showAllSecondCategory(PageBean pageBean, String parentId) {
@@ -57,6 +61,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     //添加一级类别
+    @DelCache
     @Override
     public void insertFirstCategory(Category category) {
         category.setId(UUID.randomUUID().toString());
@@ -65,6 +70,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     //修改一级或二级类别
+    @DelCache
     @Override
     public void updateFirstAndSecondCategory(Category category) {
         categoryMapper.updateByPrimaryKey(category);
@@ -72,6 +78,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 
     //删除一级类别
+    @DelCache
     @Override
     public HashMap<String,Object> deleteFirstCategory(Category category) {
         HashMap<String, Object> map = new HashMap<>();
@@ -90,6 +97,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     //删除二级类别
+    @DelCache
     @Override
     public HashMap<String,Object> deleteSecondCategory(Category category) {
         HashMap<String, Object> map = new HashMap<>();
@@ -109,6 +117,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     //添加二级类别
+    @DelCache
     @Override
     public void insertSecondCategory(Category category,String parentId) {
         category.setId(UUID.randomUUID().toString());
@@ -120,6 +129,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 
     //查询所有类别，供app分类展示
+    @AddCache
     public List<CategorySelfPo> queryCateVideoList(){
         List<CategorySelfPo> categorySelfPos = categoryMapper.quertAllOne();
         for (CategorySelfPo categorySelfPo : categorySelfPos) {

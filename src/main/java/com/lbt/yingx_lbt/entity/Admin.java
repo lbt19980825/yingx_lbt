@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 
 @Table(name ="yx_admin")
-public class Admin {
+public class Admin implements Serializable {
     @Id
     @Excel(name="ID")
     private String id;

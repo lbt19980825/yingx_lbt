@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="yx_like")
-public class Like {
+public class Like implements Serializable {
     @Id
     private String id;
 
